@@ -1,36 +1,474 @@
-# .NET Desktop
-
-
-# Build and run tests for .NET Desktop or Windows classic desktop solutions.
-# Add steps that publish symbols, save build artifacts, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/apps/windows/dot-net
-
-trigger:
-- master
-
 pool:
-  vmImage: 'windows-latest'
+
+  name: Azure Pipelines
+
+  demands:
+
+  - msbuild
+
+  - visualstudio
+
+
+
+#Your build pipeline references an undefined variable named ‘Configuration’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+#Your build pipeline references an undefined variable named ‘Configuration’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+#Your build pipeline references an undefined variable named ‘Configuration’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+#Your build pipeline references an undefined variable named ‘Configuration’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+#Your build pipeline references an undefined variable named ‘Configuration’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+#Your build pipeline references an undefined variable named ‘Platform’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+#Your build pipeline references an undefined variable named ‘Configuration’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+#Your build pipeline references an undefined variable named ‘Configuration’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+#Your build pipeline references an undefined variable named ‘Configuration’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+#Your build pipeline references an undefined variable named ‘Configuration’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+#Your build pipeline references an undefined variable named ‘Platform’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+#Your build pipeline references an undefined variable named ‘Configuration’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+#Your build pipeline references an undefined variable named ‘Configuration’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+#Your build pipeline references an undefined variable named ‘Configuration’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+#Your build pipeline references an undefined variable named ‘Configuration’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+#Your build pipeline references an undefined variable named ‘Platform’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+#Your build pipeline references an undefined variable named ‘Configuration’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+#Your build pipeline references an undefined variable named ‘Configuration’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+#Your build pipeline references an undefined variable named ‘Configuration’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+#Your build pipeline references an undefined variable named ‘Configuration’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+#Your build pipeline references an undefined variable named ‘Platform’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+#Your build pipeline references an undefined variable named ‘Configuration’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+#Your build pipeline references an undefined variable named ‘Configuration’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+#Your build pipeline references an undefined variable named ‘Configuration’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+#Your build pipeline references an undefined variable named ‘Configuration’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+#Your build pipeline references an undefined variable named ‘Platform’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
 
 variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
+
+  BuildConfiguration: 'release'
+
+
 
 steps:
+
 - task: NuGetToolInstaller@1
 
-- task: NuGetCommand@2
+  displayName: 'Use NuGet 4.4.1'
+
   inputs:
-    restoreSolution: '$(solution)'
+
+    versionSpec: 4.4.1
+
+
+
+- task: NuGetCommand@2
+
+  displayName: 'NuGet restore'
+
+
 
 - task: VSBuild@1
+
+  displayName: 'Build Target 4.5 Any'
+
   inputs:
-    solution: '$(solution)'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-    
+
+    msbuildArgs: '/p:TargetFrameworkVersion=v4.5'
+
+    platform: 'Any CPU'
+
+    configuration: '$(BuildConfiguration)'
+
+
+
 - task: PublishBuildArtifacts@1
+
+  displayName: 'Publish Artifact  4.5 Any'
+
   inputs:
-    PathtoPublish: 'D:\a\1\s\Certify\bin\Release\'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+
+    PathtoPublish: '$(BuildPath)\$(BuildName)\bin\Release\$(BuildName).exe'
+
+    ArtifactName: 'net_4.5_Any'
+
+
+
+- task: VSBuild@1
+
+  displayName: 'Build Target 4.7 Any '
+
+  inputs:
+
+    msbuildArgs: '/p:TargetFrameworkVersion=v4.7'
+
+    platform: 'Any CPU'
+
+    configuration: '$(BuildConfiguration)'
+
+
+
+- task: PublishBuildArtifacts@1
+
+  displayName: 'Publish Artifact  4.7 Any'
+
+  inputs:
+
+    PathtoPublish: '$(BuildPath)\$(BuildName)\bin\Release\$(BuildName).exe'
+
+    ArtifactName: 'net_4.7_Any'
+
+
+
+- task: VSBuild@1
+
+  displayName: 'Build Target 4.0 Any'
+
+  inputs:
+
+    msbuildArgs: '/p:TargetFrameworkVersion=v4.0'
+
+    platform: 'Any CPU'
+
+    configuration: '$(BuildConfiguration)'
+
+
+
+- task: PublishBuildArtifacts@1
+
+  displayName: 'Publish Artifact  4.0 Any'
+
+  inputs:
+
+    PathtoPublish: '$(BuildPath)\$(BuildName)\bin\Release\$(BuildName).exe'
+
+    ArtifactName: 'net_4.0_Any'
+
+
+
+- powershell: |
+   
+   $mainPath = "$(BuildPath)\$(BuildName).sln"
+   $XMLfile = "$(BuildPath)\$(BuildName)\$(BuildName).csproj"
+   
+   
+   
+   function InsertBuildConfigCsProjc{
+   
+   
+   [XML]$empDetails = Get-Content $XMLfile
+   
+   foreach($propertyGroup in $empDetails.Project.PropertyGroup){
+   
+   if($propertyGroup.OutputPath){
+   $reffObject = $propertyGroup
+   }
+   
+   if($propertyGroup.ItemGroup.Reference){
+   $referenceObject = $propertyGroup.ItemGroup.Reference
+   }
+   
+   
+   }
+   
+   if($reffObject.PlatformTarget){
+   $reffObject.PlatformTarget = "x64"
+   }
+   
+   $reffObject.OutputPath = "bin\x64\Debug\"
+   $reffObject.Condition = "'`$(Configuration)|`$(Platform)' == 'Debug|x64'"
+   
+   $debug64 = $empDetails.ImportNode($reffObject, $true)
+   $empDetails.Project.PrependChild($debug64)
+   
+   if($reffObject.PlatformTarget){
+   $reffObject.PlatformTarget = "x64"
+   }
+   $reffObject.OutputPath = "bin\x64\Release\"
+   $reffObject.Condition = "'`$(Configuration)|`$(Platform)' == 'Release|x64'"
+   
+   $rel64 = $empDetails.ImportNode($reffObject, $true)
+   $empDetails.Project.PrependChild($rel64)
+   
+   if($reffObject.PlatformTarget){
+   $reffObject.PlatformTarget = "x86"
+   }
+   $reffObject.OutputPath = "bin\x86\Debug\"
+   $reffObject.Condition = "'`$(Configuration)|`$(Platform)' == 'Debug|x86'"
+   
+   $debug32 = $empDetails.ImportNode($reffObject, $true)
+   $empDetails.Project.PrependChild($debug32)
+   
+   
+   if($reffObject.PlatformTarget){
+   $reffObject.PlatformTarget = "x86"
+   }
+   $reffObject.OutputPath = "bin\x86\Release\"
+   $reffObject.Condition = "'`$(Configuration)|`$(Platform)' == 'Release|x86'"
+   
+   $rel32 = $empDetails.ImportNode($reffObject, $true)
+   $empDetails.Project.PrependChild($rel32)
+   
+   
+   if($reffObject.PlatformTarget){
+   $reffObject.PlatformTarget = "Any CPU"
+   }
+   $reffObject.OutputPath = "bin\Release\"
+   $reffObject.Condition = "'`$(Configuration)|`$(Platform)' == 'Release|Any CPU'"
+   
+   $relAny = $empDetails.ImportNode($reffObject, $true)
+   $empDetails.Project.PrependChild($relAny)
+   
+   Write-Host $empDetails.OuterXml
+   
+   $empDetails.Save($XMLfile) 
+   
+   }
+   
+   function GetStringBetweenTwoStrings($firstString, $secondString){
+   #Get content from file
+   $file = Get-Content $mainPath
+   #Regex pattern to compare two strings
+   $pattern = ",..{(.*?)..EndProject"
+   #Perform the opperation
+   $result = [regex]::Match($file,$pattern).Groups[1].Value
+   #Return result
+   return $result
+   }
+   
+   function InsertBuildConfigSlnProjc{
+   
+   
+   $stringHolder = ""
+   $trigger = $false
+   #Get-Content 
+   Get-Content $mainPath | ForEach-Object {
+   if($_ -match "EndProject" -And !$trigger ){
+   $projectGuid = GetStringBetweenTwoStrings("{", "}" )
+   # Work here
+   $stringHolder += @"
+   EndProject
+   Global
+       GlobalSection(SolutionConfigurationPlatforms) = preSolution
+           Debug|Any CPU = Debug|Any CPU
+           Debug|x64 = Debug|x64
+           Debug|x86 = Debug|x86
+           Release|Any CPU = Release|Any CPU
+           Release|x64 = Release|x64
+           Release|x86 = Release|x86
+       EndGlobalSection
+       GlobalSection(ProjectConfigurationPlatforms) = postSolution
+           {REPLACEGUID.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+           {REPLACEGUID.Debug|Any CPU.Build.0 = Debug|Any CPU
+           {REPLACEGUID.Debug|x64.ActiveCfg = Debug|x64
+           {REPLACEGUID.Debug|x64.Build.0 = Debug|x64
+           {REPLACEGUID.Debug|x86.ActiveCfg = Debug|x86
+           {REPLACEGUID.Debug|x86.Build.0 = Debug|x86
+           {REPLACEGUID.Release|Any CPU.ActiveCfg = Release|Any CPU
+           {REPLACEGUID.Release|Any CPU.Build.0 = Release|Any CPU
+           {REPLACEGUID.Release|x64.ActiveCfg = Release|x64
+           {REPLACEGUID.Release|x64.Build.0 = Release|x64
+           {REPLACEGUID.Release|x86.ActiveCfg = Release|x86
+           {REPLACEGUID.Release|x86.Build.0 = Release|x86
+       EndGlobalSection
+       
+   "@
+   $stringHolder = $stringHolder.Replace("REPLACEGUID",$projectGuid)
+   $trigger = $true
+   }
+   if($trigger){
+    if($_ -match "SolutionProperties"){
+   $trigger = $false
+    }
+   }
+   if(!$trigger){
+    $stringHolder += $_  + "`n"
+    }
+   }
+   #Write-Host $stringHolder
+   Set-Content -Path $mainPath  -Value $stringHolder
+   
+   
+   }
+   
+   InsertBuildConfigCsProjc
+   InsertBuildConfigSlnProjc
+
+  displayName: 'PowerShell Script'
+
+
+
+- task: VSBuild@1
+
+  displayName: 'Build Target 4.5 x64'
+
+  inputs:
+
+    msbuildArgs: '/p:TargetFrameworkVersion=v4.5'
+
+    platform: x64
+
+    configuration: '$(BuildConfiguration)'
+
+
+
+- task: PublishBuildArtifacts@1
+
+  displayName: 'Publish Artifact  4.5 x64'
+
+  inputs:
+
+    PathtoPublish: '$(BuildPath)\$(BuildName)\bin\x64\Release\$(BuildName).exe'
+
+    ArtifactName: 'net_4.5_64'
+
+
+
+- task: VSBuild@1
+
+  displayName: 'Build Target 4.5 x86'
+
+  inputs:
+
+    msbuildArgs: '/p:TargetFrameworkVersion=v4.5'
+
+    platform: x86
+
+    configuration: '$(BuildConfiguration)'
+
+
+
+- task: PublishBuildArtifacts@1
+
+  displayName: 'Publish Artifact: 4.5 x86'
+
+  inputs:
+
+    PathtoPublish: '$(BuildPath)\$(BuildName)\bin\x86\Release\$(BuildName).exe'
+
+    ArtifactName: 'net_4.5_32'
+
+
+
+- task: VSBuild@1
+
+  displayName: 'Build Target 4.0 x86'
+
+  inputs:
+
+    msbuildArgs: '/p:TargetFrameworkVersion=v4.0'
+
+    platform: x86
+
+    configuration: '$(BuildConfiguration)'
+
+
+
+- task: PublishBuildArtifacts@1
+
+  displayName: 'Publish Artifact:  4.0 x86'
+
+  inputs:
+
+    PathtoPublish: '$(BuildPath)\$(BuildName)\bin\x86\Release\$(BuildName).exe'
+
+    ArtifactName: 'net_4.0_32'
+
+
+
+- task: VSBuild@1
+
+  displayName: 'Build Target 4.0 x64'
+
+  inputs:
+
+    msbuildArgs: '/p:TargetFrameworkVersion=v4.0'
+
+    platform: x64
+
+    configuration: '$(BuildConfiguration)'
+
+
+
+- task: PublishBuildArtifacts@1
+
+  displayName: 'Publish Artifact: 4.0 x64'
+
+  inputs:
+
+    PathtoPublish: '$(BuildPath)\$(BuildName)\bin\x64\Release\$(BuildName).exe'
+
+    ArtifactName: 'net_4.0_64'
+
+
+
+- task: VSBuild@1
+
+  displayName: 'Build Target 4.7 x86'
+
+  inputs:
+
+    msbuildArgs: '/p:TargetFrameworkVersion=v4.7'
+
+    platform: x86
+
+    configuration: '$(BuildConfiguration)'
+
+
+
+- task: PublishBuildArtifacts@1
+
+  displayName: 'Publish Artifact:  4.7 x86'
+
+  inputs:
+
+    PathtoPublish: '$(BuildPath)\$(BuildName)\bin\x86\Release\$(BuildName).exe'
+
+    ArtifactName: 'net_4.7_32'
+
+
+
+- task: VSBuild@1
+
+  displayName: 'Build Target 4.7 x64 '
+
+  inputs:
+
+    msbuildArgs: '/p:TargetFrameworkVersion=v4.7'
+
+    platform: x64
+
+    configuration: '$(BuildConfiguration)'
+
+
+
+- task: PublishBuildArtifacts@1
+
+  displayName: 'Publish Artifact: 4.7 x64 '
+
+  inputs:
+
+    PathtoPublish: '$(BuildPath)\$(BuildName)\bin\x64\Release\$(BuildName).exe'
+
+    ArtifactName: 'net_4.7_64'
+
+
+
